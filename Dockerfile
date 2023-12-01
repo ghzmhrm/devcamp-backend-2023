@@ -8,8 +8,8 @@ RUN go mod download
 
 ENV ENV=Docker
 
-RUN go build -o /Devcamp-2023
+RUN go build -o /devcamp-nsq-2023
 
 EXPOSE 8080
 
-CMD ["/Devcamp-2023"]
+CMD ["/devcamp-nsq-2023"]

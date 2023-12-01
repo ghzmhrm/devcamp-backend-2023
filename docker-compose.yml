@@ -1,0 +1,46 @@
+version: "3"
+services:
+  nsqlookupd:
+    container_name: nsqlookup
+    image: nsqio/nsq
+    command: nsqlookupd
+    ports:
+      - "4160:4160"
+      - "4161:4161"
+
+  nsqd:
+    container_name: nsqd
+    image: nsqio/nsq
+    # FOR MAC
+    command: nsqd --broadcast-address=nsqd --lookupd-tcp-address=nsqlookup:4160
+    # FOR UBUNTU
+    # command: nsqd --broadcast-address=localhost --lookupd-tcp-taddress=nsqlookup:4160
+    depends_on:
+      - nsqlookupd
+    volumes:
+      - nsqd-data:/data
+    ports:
+      - "4150:4150"
+      - "4151:4151"
+
+  nsqadmin:
+    container_name: nsqadmin
+    image: nsqio/nsq
+    command: nsqadmin --lookupd-http-address=nsqlookup:4161
+    depends_on:
+      - nsqlookupd
+    ports:
+      - "4171:4171"
+
+  web:
+    container_name: web
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - nsqd
+      - nsqlookupd
+      - nsqadmin
+
+volumes:
+    nsqd-data:
