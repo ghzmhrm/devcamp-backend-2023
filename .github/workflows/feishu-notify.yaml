@@ -1,8 +1,7 @@
 name: Feishu Notification
-
 on:
   pull_request:
-    types: [opened]
+    branches: [main]
 
 jobs:
   pr-opened:
