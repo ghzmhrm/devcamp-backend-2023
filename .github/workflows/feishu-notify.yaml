@@ -1,14 +1,12 @@
 name: Feishu Notification
-
 on:
   pull_request:
-    types: [opened]
+    branches: [main]
 
 jobs:
   pr-opened:
     name: Pull Request Opened Notification
-    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Send Feishu Message
         env:
@@ -24,8 +22,6 @@ jobs:
             See: https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}
 
         run: |
-          sudo apt update
-          sudo apt install wget -y
-          wget -q https://github.com/xiachufang/actions-feishu/releases/download/${{ env.ACTIONS_FEISHU_TAG }}/linux-amd64-actions-feishu.tar.gz
-          tar zxf linux-amd64-actions-feishu.tar.gz feishu
+          curl -L -O https://github.com/xiachufang/actions-feishu/releases/download/${{ env.ACTIONS_FEISHU_TAG }}/darwin-amd64-actions-feishu.tar.gz
+          tar zxf darwin-amd64-actions-feishu.tar.gz feishu
           ./feishu
