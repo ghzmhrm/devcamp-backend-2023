@@ -1,0 +1,35 @@
+{
+    "msg_type": "interactive",
+    "card": {
+        "config": {
+            "wide_screen_mode": true
+        },
+        "elements": [
+            {
+                "tag": "markdown",
+                "content": "{{.pr_title}} created by [{{.pr_user}}]({{.pr_user_url}})"
+            },
+            {
+                "tag": "action",
+                "actions": [
+                    {
+                    "tag": "button",
+                    "text": {
+                        "tag": "plain_text",
+                        "content": "Go to PR"
+                    },
+                    "type": "primary",
+                    "url": "{{.pr_url}}"
+                    }
+                ]
+            }
+        ],
+        "header": {
+            "template": "blue",
+            "title": {
+                "content": "New PR Request",
+                "tag": "plain_text"
+            }
+        }
+    }
+}
