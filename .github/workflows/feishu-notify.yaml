@@ -20,11 +20,8 @@ jobs:
                 ${{ github.event.pull_request.title }}
             
             See: https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}
-
+            
         run: |
-          echo ${{ secrets.FEISHU_ROBOT_WEBHOOK_URL }} >> test.txt
-          echo $INPUT_WEBHOOK >> test1.txt
-          echo ${{ env.INPUT_WEBHOOK }} >> test2.txt
           curl -L -O https://github.com/xiachufang/actions-feishu/releases/download/${{ env.ACTIONS_FEISHU_TAG }}/darwin-amd64-actions-feishu.tar.gz
           tar zxf darwin-amd64-actions-feishu.tar.gz feishu
           ./feishu
