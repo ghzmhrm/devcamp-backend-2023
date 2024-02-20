@@ -9,6 +9,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/github-script@v4
         id: set-template-values
         with:
@@ -20,6 +21,7 @@ jobs:
               pr_url: "https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}",
             })
           result-encoding: string
+
       - name: Send feishu message
         env:
           ACTIONS_FEISHU_TAG: "v1.3.1"

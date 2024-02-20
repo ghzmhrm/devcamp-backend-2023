@@ -7,7 +7,7 @@
         "elements": [
             {
                 "tag": "markdown",
-                "content": "{{.pr_title}} created by [{{.pr_user}}]({{.pr_user_url}})"
+                "content": "{{.pr_title}}\ncreated by [{{.pr_user}}]({{.pr_user_url}})"
             },
             {
                 "tag": "action",
