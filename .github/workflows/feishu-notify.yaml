@@ -20,7 +20,7 @@ jobs:
                 ${{ github.event.pull_request.title }}
             
             See: https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}
-
+            
         run: |
           curl -L -O https://github.com/xiachufang/actions-feishu/releases/download/${{ env.ACTIONS_FEISHU_TAG }}/darwin-amd64-actions-feishu.tar.gz
           tar zxf darwin-amd64-actions-feishu.tar.gz feishu
